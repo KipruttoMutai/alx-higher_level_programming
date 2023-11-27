@@ -56,10 +56,14 @@ class Rectangle:
     def __str__(self):
         """Prints the rectangle with # symbol"""
         if self.__height == 0 or self.__width == 0:
-            return("")
+            return ""
         rect = []
         for _ in range(self.__height):
             [rect.append('#') for _ in range(self.__width)]
             if _ != self.__height - 1:
                 rect.append("\n")
         return ("".join(rect))
+
+    def __repr__(self):
+        """"Rerurns string representation of a rectangle"""
+        return f"Rectangle({self.__height} and {self.__width})"
