@@ -3,6 +3,10 @@
 
 
 def write_file(filename="", text=""):
-    """"""
-    with open(filename, mode='w', encoding='utf-8') as b_file:
-        b_file.write(text)
+    """creates a file if it does not exist and overwrites if it does
+    Args:
+        filename: name of file
+        text: text to write"""
+    with open(filename, mode='w', encoding='utf-8') as file:
+       file.write(text)
+       return len(text)
