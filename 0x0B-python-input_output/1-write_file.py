@@ -8,5 +8,5 @@ def write_file(filename="", text=""):
         filename: name of file
         text: text to write"""
     with open(filename, mode='w', encoding='utf-8') as file:
-       file.write(text)
-       return len(text)
+        file.write(text)
+    return len(text)
