@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-import json
 
 """
 module:3-to_json_string
 resource:to_json_string()function
 """
+import json
 
 
 def to_json_string(my_obj):
