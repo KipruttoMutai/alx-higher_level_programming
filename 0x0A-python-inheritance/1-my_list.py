@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """
-module:1-my_list
-resource:print_sorted
+Module:1-my_list
+resource:MyList class
 """
 
 
-class Mylist(list):
+class MyList(list):
     """creates mylist"""
     def print_sorted(self):
         """class MyList that inherits from list
