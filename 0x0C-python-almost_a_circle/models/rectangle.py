@@ -10,49 +10,81 @@ class Rectangle(Base):
     """creates a rectangle"""
     @property
     def width(self):
+        """
+        The width getter method returns the size
+        of the width of the rectangle.
+        """
         return self.__width
 
     @width.setter
     def width(self, value):
-        if type(self.__width) is not int:
+        """
+        The corresponding setter method is used to
+        set the size of the rectangle.
+        """
+        if type(value) is not int:
             raise TypeError("width must be an integer")
-        if self.__width < 1:
+        if value < 1:
             raise ValueError("width must be > 0")
         self.__width = value
 
     @property
     def height(self):
+        """
+        The height getter method is used to return the size
+        of the rectangle's height to the user.
+        """
         return self.__height
 
     @height.setter
     def height(self, value):
-        if type(self.__height) is not int:
+        """
+        While the corresponding height setter method is used
+        to the the size of the rectangle's height.
+        """
+        if type(value) is not int:
             raise TypeError("height must be an integer")
-        if self.__height < 1:
+        if value < 1:
             raise ValueError("height must be > 0")
         self.__height = value
 
     @property
     def x(self):
+        """
+        The x getter method is used to set the x coordinate
+        position of the rectangle.
+        """
         return self.__x
 
     @x.setter
     def x(self, value):
-        if type(self.__x) is not int:
+        """
+        Its corresponding setter method is used to set x
+        coordinate of the rectangle
+        """
+        if type(value) is not int:
             raise TypeError("x must be an integer")
-        if self.__x < 0:
+        if value < 0:
             raise ValueError("x must be >= 0")
         self.__x = value
 
     @property
     def y(self):
+        """
+        The y getter method return the y coordinate
+        position of the rectangle.
+        """
         return self.__y
 
     @y.setter
     def y(self, value):
-        if type(self.__y) is not int:
+        """
+        The corresponding setter method is used to
+        set the y coordinate position.
+        """
+        if type(value) is not int:
             raise TypeError("y must be an integer")
-        if self.__y < 0:
+        if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
 
