@@ -8,6 +8,7 @@ resources:class base
 class Base:
     """creates a base"""
     __nb_objects = 0
+
     def __init__(self, id=None):
         """
          assigns the public instance attribute id with this argument value
