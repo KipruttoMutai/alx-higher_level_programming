@@ -37,16 +37,16 @@ class Rectangle(Base):
         return self.__height
 
     @height.setter
-    def height(self, value):
+    def height(self, height):
         """
         While the corresponding height setter method is used
         to the the size of the rectangle's height.
         """
-        if type(value) is not int:
+        if type(height) is not int:
             raise TypeError("height must be an integer")
-        if value < 1:
+        if height < 1:
             raise ValueError("height must be > 0")
-        self.__height = value
+        self.__height = height
 
     @property
     def x(self):
@@ -82,9 +82,9 @@ class Rectangle(Base):
         The corresponding setter method is used to
         set the y coordinate position.
         """
-        if type(value) is not int:
+        if type(y) is not int:
             raise TypeError("y must be an integer")
-        if value < 0:
+        if y < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
 
