@@ -8,6 +8,16 @@ from models.base import Base
 
 class Rectangle(Base):
     """creates a rectangle"""
+    def __init__(self, width, height, x=0, y=0, id=None):
+        """calls the super classs with id
+        and assigns each argument with the right attribute
+        """
+        self.__width = width
+        self.__height = height
+        self.__x = x
+        self.__y = y
+        super().__init__(id)
+
     @property
     def width(self):
         """
@@ -18,13 +28,9 @@ class Rectangle(Base):
 
     @width.setter
     def width(self, value):
-        """
-        The corresponding setter method is used to
-        set the size of the rectangle.
-        """
-        if type(value) is not int:
+        if type(value) != int:
             raise TypeError("width must be an integer")
-        if value < 1:
+        if value <= 0:
             raise ValueError("width must be > 0")
         self.__width = value
 
@@ -38,15 +44,11 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, height):
-        """
-        While the corresponding height setter method is used
-        to the the size of the rectangle's height.
-        """
-        if type(height) is not int:
+        if type(value) != int:
             raise TypeError("height must be an integer")
-        if height < 1:
+        if value <= 0:
             raise ValueError("height must be > 0")
-        self.__height = height
+        self.__height = value
 
     @property
     def x(self):
@@ -62,7 +64,7 @@ class Rectangle(Base):
         Its corresponding setter method is used to set x
         coordinate of the rectangle
         """
-        if type(value) is not int:
+        if type(value) != int:
             raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
@@ -82,37 +84,27 @@ class Rectangle(Base):
         The corresponding setter method is used to
         set the y coordinate position.
         """
-        if type(y) is not int:
+        if type(value) != int:
             raise TypeError("y must be an integer")
-        if y < 0:
+        if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
 
-    def __init__(self, width, height, x=0, y=0, id=None):
-        """calls the super classs with id
-        and assigns each argument with the right attribute
-        """
-        super().__init__(id)
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
-
     def area(self):
         """Returns the area of rectangle"""
-        return self.__width * self.__height
+        return self.width * self.height
 
     def display(self):
         """prints in stdout the Rectangle instance with the character "#" """
-        for _ in range(self.__y):
+        for _ in range(self.y):
             print()
-        for _ in range(self.__height):
-            print(" " * self.__x + "#" * self.__width)
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)
 
     def __str__(self):
         """overrides the __str__method"""
-        return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - "
-                f"{self.__width}/{self.__height}")
+        return (f"[Rectangle] ({self.id}) {self.x}/{self.y} - "
+                f"{self.width}/{self.height}")
 
     def update(self, *args, **kwargs):
         """public method that assigns an argument to each attribute using args
@@ -122,13 +114,13 @@ class Rectangle(Base):
             if len(args) >= 1:
                 self.id = args[0]
             if len(args) >= 2:
-                self.__width = args[1]
+                self.width = args[1]
             if len(args) >= 3:
-                self.__height = args[2]
+                self.height = args[2]
             if len(args) >= 4:
-                self.__x = args[3]
+                self.x = args[3]
             if len(args) >= 5:
-                self.__y = args[4]
+                self.y = args[4]
         elif kwargs:
             for key, value in kwargs.items():
                 setattr(self, key, value)
