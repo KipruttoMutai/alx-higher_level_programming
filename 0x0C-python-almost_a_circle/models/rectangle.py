@@ -27,12 +27,12 @@ class Rectangle(Base):
         return self.__width
 
     @width.setter
-    def width(self, value):
-        if type(value) != int:
+    def width(self, width):
+        if type(width) != int:
             raise TypeError("width must be an integer")
-        if value <= 0:
+        if width <= 0:
             raise ValueError("width must be > 0")
-        self.__width = value
+        self.__width = width
 
     @property
     def height(self):
@@ -43,12 +43,12 @@ class Rectangle(Base):
         return self.__height
 
     @height.setter
-    def height(self, value):
-        if type(value) != int:
+    def height(self, height):
+        if type(height) != int:
             raise TypeError("height must be an integer")
-        if value <= 0:
+        if height <= 0:
             raise ValueError("height must be > 0")
-        self.__height = value
+        self.__height = height
 
     @property
     def x(self):
@@ -59,16 +59,16 @@ class Rectangle(Base):
         return self.__x
 
     @x.setter
-    def x(self, value):
+    def x(self, x):
         """
         Its corresponding setter method is used to set x
         coordinate of the rectangle
         """
-        if type(value) != int:
+        if type(x) != int:
             raise TypeError("x must be an integer")
-        if value < 0:
+        if x < 0:
             raise ValueError("x must be >= 0")
-        self.__x = value
+        self.__x = x
 
     @property
     def y(self):
@@ -79,16 +79,16 @@ class Rectangle(Base):
         return self.__y
 
     @y.setter
-    def y(self, value):
+    def y(self,y):
         """
         The corresponding setter method is used to
         set the y coordinate position.
         """
-        if type(value) != int:
+        if type(y) != int:
             raise TypeError("y must be an integer")
-        if value < 0:
+        if y < 0:
             raise ValueError("y must be >= 0")
-        self.__y = value
+        self.__y = y
 
     def area(self):
         """Returns the area of rectangle"""
