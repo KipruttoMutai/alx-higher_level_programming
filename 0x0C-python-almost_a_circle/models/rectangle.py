@@ -12,10 +12,10 @@ class Rectangle(Base):
         """calls the super classs with id
         and assigns each argument with the right attribute
         """
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
         super().__init__(id)
 
     @property
@@ -24,7 +24,7 @@ class Rectangle(Base):
         The width getter method returns the size
         of the width of the rectangle.
         """
-        return self.__width
+        return self.width
 
     @width.setter
     def width(self, width):
@@ -32,7 +32,7 @@ class Rectangle(Base):
             raise TypeError("width must be an integer")
         if width <= 0:
             raise ValueError("width must be > 0")
-        self.__width = width
+        self.width = width
 
     @property
     def height(self):
@@ -40,7 +40,7 @@ class Rectangle(Base):
         The height getter method is used to return the size
         of the rectangle's height to the user.
         """
-        return self.__height
+        return self.height
 
     @height.setter
     def height(self, height):
@@ -48,7 +48,7 @@ class Rectangle(Base):
             raise TypeError("height must be an integer")
         if height <= 0:
             raise ValueError("height must be > 0")
-        self.__height = height
+        self.height = height
 
     @property
     def x(self):
@@ -56,7 +56,7 @@ class Rectangle(Base):
         The x getter method is used to set the x coordinate
         position of the rectangle.
         """
-        return self.__x
+        return self.x
 
     @x.setter
     def x(self, x):
@@ -68,7 +68,7 @@ class Rectangle(Base):
             raise TypeError("x must be an integer")
         if x < 0:
             raise ValueError("x must be >= 0")
-        self.__x = x
+        self.x = x
 
     @property
     def y(self):
@@ -76,7 +76,7 @@ class Rectangle(Base):
         The y getter method return the y coordinate
         position of the rectangle.
         """
-        return self.__y
+        return self.y
 
     @y.setter
     def y(self,y):
@@ -88,7 +88,7 @@ class Rectangle(Base):
             raise TypeError("y must be an integer")
         if y < 0:
             raise ValueError("y must be >= 0")
-        self.__y = y
+        self.y = y
 
     def area(self):
         """Returns the area of rectangle"""
