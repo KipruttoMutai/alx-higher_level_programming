@@ -4,6 +4,7 @@ modules:base.py
 resources:class base
 """
 import json
+import csv
 
 
 class Base:
@@ -76,3 +77,34 @@ class Base:
             for dictionary in list_output:
                 list_of_instances.append(cls.create(**dictionary))
         return list_of_instances
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes list_objs in CSV format and writes to a file"""
+        if list_objs is None:
+            list_objs = []
+        class_name = cls.__name__
+        filename = f"{class_name}.csv"
+        with open(filename, 'w', newline='') as file:
+            writer = csv.writer(file)
+            for obj in list_objs:
+                if class_name == "Rectangle":
+                    writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                elif class_name == "Square":
+                    writer.writerow([obj.id, obj.size, obj.x, obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserializes data from a CSV file and returns a list of instances"""
+        class_name = cls.__name__
+        filename = f"{class_name}.csv"
+        instances = []
+        with open(filename, 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if class_name == "Rectangle":
+                    instance = cls(int(row[0]), int(row[1]), int(row[2]), int(row[3]), int(row[4]))
+                elif class_name == "Square":
+                    instance = cls(int(row[0]), int(row[1]), int(row[2]), int(row[3]))
+                instances.append(instance)
+        return instances
