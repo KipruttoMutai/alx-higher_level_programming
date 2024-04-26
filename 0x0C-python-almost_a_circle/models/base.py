@@ -80,31 +80,57 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        """Serializes list_objs in CSV format and writes to a file"""
-        if list_objs is None:
-            list_objs = []
-        class_name = cls.__name__
-        filename = f"{class_name}.csv"
-        with open(filename, 'w', newline='') as file:
-            writer = csv.writer(file)
+        """
+        Write the CSV serialization of a list of objects to a file.
+        """
+        # corrected the name of the file extension from .json to .csv
+        file_name = "{}.csv".format(cls.__name__)
+
+        with open(file_name, "w") as csvfile:
+            if list_objs is None or list_objs == []:
+                csvfile.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    field_names = ["id", "width", "height", "x", "y"]
+                else:
+                    field_names = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(csvfile, fieldnames=field_names)
+
             for obj in list_objs:
-                if class_name == "Rectangle":
-                    writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
-                elif class_name == "Square":
-                    writer.writerow([obj.id, obj.size, obj.x, obj.y])
+                writer.writerow(obj.to_dictionary())
 
     @classmethod
     def load_from_file_csv(cls):
-        """Deserializes data from a CSV file and returns a list of instances"""
-        class_name = cls.__name__
-        filename = f"{class_name}.csv"
-        instances = []
-        with open(filename, 'r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if class_name == "Rectangle":
-                    instance = cls(int(row[0]), int(row[1]), int(row[2]), int(row[3]), int(row[4]))
-                elif class_name == "Square":
-                    instance = cls(int(row[0]), int(row[1]), int(row[2]), int(row[3]))
-                instances.append(instance)
-        return instances
+        """
+        Return a list of classes instantiated from a CSV file.
+        """
+        # corrected the name of the file extension from .json to .csv
+        file_name = "{}.csv".format(cls.__name__)
+        try:
+            with open(file_name, "r") as csvfile:
+                if cls.__name__ == "Rectangle":
+                    filednames = ["id", "width", "height", "x", "y"]
+                else:
+                    filednames = ["id", "size", "x", "y"]
+                list_dicts = csv.DictReader(csvfile, fieldnames=filednames)
+
+                new_list_dict = []
+
+                converted_dict = {}
+
+                for d in list_dicts:
+                    for key, value in d.items():
+                        converted_dict[key] = int(value)
+
+                    new_list_dict.append(converted_dict)
+
+                list_dicts = new_list_dict
+
+                list_of_instances = []
+
+                for d in list_dicts:
+                    list_of_instances.append(cls.create(**d))
+
+                return list_of_instances
+        except FileNotFoundError:
+            return []
